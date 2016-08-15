@@ -8,12 +8,10 @@ import org.junit.Test;
 
 public class TennisGameTest {
 	
-
 	private String expectedScreOnDisplay;
 	private TennisGame tennisGame;
 	private static Player1 firstPlayer;
 	private static Player2 secondPlayer;
-	
 	
 	@Before
 	public  void setUp()
@@ -24,13 +22,11 @@ public class TennisGameTest {
 		firstPlayer = new Player1("Björn Borg");
 		secondPlayer = new Player2("John McEnroe");
 		tennisGame = new TennisGame( firstPlayer, secondPlayer);
-		
 	}
 	
 	@Test
 	public void testWhenMatchStartsThenScoreOnScoreboardIsLoveAll()
 	{
-		
 		expectedScreOnDisplay = "Love All";
 		assertEquals(this.expectedScreOnDisplay , tennisGame.getCurrentScore());
 	}
@@ -56,7 +52,13 @@ public class TennisGameTest {
 	{
 		expectedScreOnDisplay = "Fifteen Thirty"; 
 		doPlayersScoreSetting(1 , 2);
-
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_0_PointsAndSecondPlayerHas_3_Points()
+	{
+		expectedScreOnDisplay = "Love Forty"; 
+		doPlayersScoreSetting(0 , 3);
 	}
 	
 	@Test
@@ -64,7 +66,6 @@ public class TennisGameTest {
 	{
 		expectedScreOnDisplay = "Fifteen Forty"; 
 		doPlayersScoreSetting(1 , 3);
-
 	}
 	
 	@Test
@@ -74,14 +75,19 @@ public class TennisGameTest {
 		doPlayersScoreSetting(3 , 3);
 	}
 	
-	
 	@Test
 	public void testWhenFirstPlayerHas_4_PointsAndSecondPlayerHas_3_Points()
 	{
 		//expectedScreOnDisplay = "Advantage player1";
 		expectedScreOnDisplay = "Advantage Björn Borg"; 
 		doPlayersScoreSetting(4 , 3);
-
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_4_PointsAndSecondPlayerHas_4_Points()
+	{
+		expectedScreOnDisplay = "Deuce"; 
+		doPlayersScoreSetting(4 , 4);
 	}
 	
 	@Test
