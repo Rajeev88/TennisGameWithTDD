@@ -36,7 +36,7 @@ public class TennisGameTest {
 	public void testWhenBothPlayersHave_1_PointThenScoreOnScoreboardIsFifteenAll()
 	{
 		expectedScreOnDisplay = "Fifteen All"; 
-		doPlayersScoreSetting(2 , 2);
+		doPlayersScoreSetting(1 , 1);
 	}
 	
 	@Test
