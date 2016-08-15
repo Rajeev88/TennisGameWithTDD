@@ -24,6 +24,7 @@ public class TennisGameTest {
 		tennisGame = new TennisGame( firstPlayer, secondPlayer);
 	}
 	
+	// test cases when both the players have same points
 	@Test
 	public void testWhenMatchStartsThenScoreOnScoreboardIsLoveAll()
 	{
@@ -32,40 +33,17 @@ public class TennisGameTest {
 	}
 	
 	@Test
-	public void testWhenFirstPlayersWonApointThenScoreOnScoreboardIsFifteenLove()
+	public void testWhenBothPlayersHave_1_PointThenScoreOnScoreboardIsFifteenAll()
 	{
-		expectedScreOnDisplay = "Fifteen Love"; 
-		tennisGame.wonPoint(firstPlayer);
-		assertEquals(this.expectedScreOnDisplay , tennisGame.getCurrentScore());
+		expectedScreOnDisplay = "Fifteen All"; 
+		doPlayersScoreSetting(2 , 2);
 	}
 	
 	@Test
-	public void testWhenSecondPlayersWonApointThenScoreOnScoreboardIsLoveFifteen()
+	public void testWhenBothPlayersHave_2_PointsThenScoreOnScoreboardIsThirtyAll()
 	{
-		expectedScreOnDisplay = "Love Fifteen"; 
-		tennisGame.wonPoint(secondPlayer);
-		assertEquals(this.expectedScreOnDisplay , tennisGame.getCurrentScore());
-	}
-	
-	@Test
-	public void testWhenFirstPlayerHas_1_PointsAndSecondPlayerHas_2_Points()
-	{
-		expectedScreOnDisplay = "Fifteen Thirty"; 
-		doPlayersScoreSetting(1 , 2);
-	}
-	
-	@Test
-	public void testWhenFirstPlayerHas_0_PointsAndSecondPlayerHas_3_Points()
-	{
-		expectedScreOnDisplay = "Love Forty"; 
-		doPlayersScoreSetting(0 , 3);
-	}
-	
-	@Test
-	public void testWhenFirstPlayerHas_1_PointsAndSecondPlayerHas_3_Points()
-	{
-		expectedScreOnDisplay = "Fifteen Forty"; 
-		doPlayersScoreSetting(1 , 3);
+		expectedScreOnDisplay = "Thirty All"; 
+		doPlayersScoreSetting(2 , 2);
 	}
 	
 	@Test
@@ -76,18 +54,64 @@ public class TennisGameTest {
 	}
 	
 	@Test
+	public void testWhenBothPlayersHave_4_PointsThenScoreOnScoreboardIsDeuce()
+	{
+		expectedScreOnDisplay = "Deuce"; 
+		doPlayersScoreSetting(4 , 4);
+	}
+	
+	@Test
+	public void testWhenBothPlayersHave_7_PointsThenScoreOnScoreboardIsDeuce()
+	{
+		expectedScreOnDisplay = "Deuce";
+		doPlayersScoreSetting(7 , 7);
+	}
+	
+	// test cases when both the players have different points but <= 3
+	@Test
+	public void testWhenFirstPlayerHas_1_PointAndSecondPlayerHas_0_Point()
+	{
+		expectedScreOnDisplay = "Fifteen Love"; 
+		tennisGame.wonPoint(firstPlayer);
+		assertEquals(this.expectedScreOnDisplay , tennisGame.getCurrentScore());
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_0_PointAndSecondPlayerHas_1_Point()
+	{
+		expectedScreOnDisplay = "Love Fifteen"; 
+		tennisGame.wonPoint(secondPlayer);
+		assertEquals(this.expectedScreOnDisplay , tennisGame.getCurrentScore());
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_1_PointAndSecondPlayerHas_2_Points()
+	{
+		expectedScreOnDisplay = "Fifteen Thirty"; 
+		doPlayersScoreSetting(1 , 2);
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_0_PointAndSecondPlayerHas_3_Points()
+	{
+		expectedScreOnDisplay = "Love Forty"; 
+		doPlayersScoreSetting(0 , 3);
+	}
+	
+	@Test
+	public void testWhenFirstPlayerHas_1_PointAndSecondPlayerHas_3_Points()
+	{
+		expectedScreOnDisplay = "Fifteen Forty"; 
+		doPlayersScoreSetting(1 , 3);
+	}
+	
+	// test cases when either of player has points >=4
+	@Test
 	public void testWhenFirstPlayerHas_4_PointsAndSecondPlayerHas_3_Points()
 	{
 		//expectedScreOnDisplay = "Advantage player1";
 		expectedScreOnDisplay = "Advantage Björn Borg"; 
 		doPlayersScoreSetting(4 , 3);
-	}
-	
-	@Test
-	public void testWhenFirstPlayerHas_4_PointsAndSecondPlayerHas_4_Points()
-	{
-		expectedScreOnDisplay = "Deuce"; 
-		doPlayersScoreSetting(4 , 4);
 	}
 	
 	@Test
@@ -120,13 +144,6 @@ public class TennisGameTest {
 		//expectedScreOnDisplay = "Win for player2";
 		expectedScreOnDisplay = "Win for John McEnroe";
 		doPlayersScoreSetting(9 , 11);
-	}
-	
-	@Test
-	public void testWhenFirstPlayerHas_12_PointsAndSecondPlayerHas_12_Points()
-	{
-		expectedScreOnDisplay = "Deuce";
-		doPlayersScoreSetting(12 , 12);
 	}
 	
 	/**This method sets scores for both the players accordingly passed parameters.
